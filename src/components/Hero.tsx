@@ -35,9 +35,9 @@ export default function Hero() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-zinc-900 rounded-full blur-3xl opacity-50"></div>
 
       {/* Main Text - Left */}
-      <div className="absolute left-[5%] top-[25%] z-10 max-w-[400px]">
+      <div className="absolute left-1/2 -translate-x-1/2 top-[15%] md:left-[5%] md:translate-x-0 md:top-[25%] z-10 max-w-[90vw] md:max-w-[400px] text-center md:text-left">
         <h2 
-          className="text-8xl font-marker text-white leading-[0.85] glitch-text drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]" 
+          className="text-6xl md:text-8xl font-marker text-white leading-[0.85] glitch-text drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]" 
           data-text="FUEL YOUR CHAOS"
         >
           FUEL <br/>
@@ -46,11 +46,11 @@ export default function Hero() {
         </h2>
         
         {/* Decorative grunge box behind text */}
-        <div className="absolute -z-10 top-10 -left-10 w-[120%] h-[120%] border border-white/10 opacity-30 rotate-[-2deg]"></div>
+        <div className="absolute -z-10 top-10 -left-10 w-[120%] h-[120%] border border-white/10 opacity-30 rotate-[-2deg] hidden md:block"></div>
       </div>
 
       {/* Floating Pizza - Center */}
-      <div className="relative z-20 animate-float w-[600px] h-[600px] md:w-[750px] md:h-[750px]">
+      <div className="relative z-20 animate-float w-[350px] h-[350px] md:w-[750px] md:h-[750px] mt-20 md:mt-0">
          {/* Pizza Base Image */}
          <div className="relative w-full h-full drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
              {/* Levitating Ingredients Pizza (Initial) */}
@@ -99,15 +99,15 @@ export default function Hero() {
       </div>
 
       {/* Neon Sign - Right */}
-      <div className="absolute right-[10%] top-[40%] z-10 transform rotate-[-5deg]">
-        <button className="relative border-4 border-neon-pink p-4 rounded-lg shadow-[0_0_20px_#ff00ff,inset_0_0_10px_#ff00ff] hover:scale-110 hover:shadow-[0_0_40px_#ff00ff,inset_0_0_20px_#ff00ff] transition-all duration-300 cursor-pointer group">
-          <h3 className="text-4xl font-oswald italic text-white drop-shadow-[0_0_5px_#ff00ff] group-hover:text-white transition-colors">
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-[15%] md:left-auto md:translate-x-0 md:right-[10%] md:top-[40%] md:bottom-auto z-30 transform rotate-[-5deg] mt-8 md:mt-0">
+        <button className="relative border-4 border-neon-pink p-3 md:p-4 rounded-lg shadow-[0_0_20px_#ff00ff,inset_0_0_10px_#ff00ff] hover:scale-110 hover:shadow-[0_0_40px_#ff00ff,inset_0_0_20px_#ff00ff] transition-all duration-300 cursor-pointer group bg-black/50 backdrop-blur-sm md:bg-transparent">
+          <h3 className="text-3xl md:text-4xl font-oswald italic text-white drop-shadow-[0_0_5px_#ff00ff] group-hover:text-white transition-colors whitespace-nowrap">
             ORDER NOW!
           </h3>
-          <Zap className="absolute -top-6 -right-6 text-neon-green w-10 h-10 drop-shadow-[0_0_10px_#ccff00] group-hover:rotate-12 transition-transform" />
-          <Skull className="absolute -bottom-6 -left-6 text-white w-8 h-8 opacity-70 group-hover:opacity-100 transition-opacity" />
+          <Zap className="absolute -top-6 -right-6 text-neon-green w-8 h-8 md:w-10 md:h-10 drop-shadow-[0_0_10px_#ccff00] group-hover:rotate-12 transition-transform" />
+          <Skull className="absolute -bottom-6 -left-6 text-white w-6 h-6 md:w-8 md:h-8 opacity-70 group-hover:opacity-100 transition-opacity" />
         </button>
-        <Zap className="absolute top-10 right-[-40px] text-neon-green w-6 h-6 animate-pulse" />
+        <Zap className="absolute top-10 right-[-40px] text-neon-green w-6 h-6 animate-pulse hidden md:block" />
       </div>
 
       {/* Glitch Decorations */}

@@ -9,7 +9,7 @@ export default function FloatingCTA() {
 
   return (
     <>
-      <div className="fixed bottom-24 right-6 z-50 animate-bounce-slow">
+      <div className="fixed bottom-8 md:bottom-24 right-6 z-50 animate-bounce-slow">
         <button 
           onClick={() => setIsModalOpen(true)}
           className="relative group"
