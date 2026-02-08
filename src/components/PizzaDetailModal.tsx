@@ -58,7 +58,7 @@ export default function PizzaDetailModal({ pizza, onClose }: PizzaDetailModalPro
 
       {/* Modal Container */}
       <div 
-        className={`relative w-full max-w-4xl h-[100dvh] md:h-auto bg-zinc-950 border border-white/20 shadow-2xl overflow-hidden flex flex-col md:flex-row transform transition-all duration-500 ${isVisible ? "scale-100 translate-y-0" : "scale-95 translate-y-8"}`}
+        className={`relative w-full max-w-4xl h-[85vh] md:h-auto bg-zinc-950 border border-white/20 shadow-2xl overflow-hidden flex flex-col md:flex-row transform transition-all duration-500 ${isVisible ? "scale-100 translate-y-0" : "scale-95 translate-y-8"}`}
         style={{
           boxShadow: `0 0 50px -12px ${pizza.accentColor.includes("neon-green") ? "#39ff14" : pizza.accentColor.includes("neon-pink") ? "#ff00ff" : pizza.accentColor.includes("cyan") ? "#00ffff" : "#facc15"}40`
         }}
@@ -128,7 +128,7 @@ export default function PizzaDetailModal({ pizza, onClose }: PizzaDetailModalPro
 
           {/* Lore / Story */}
           {pizza.story && (
-            <div className="mb-8 relative p-6 bg-white/5 border border-white/10 rounded-lg overflow-hidden">
+            <div className="hidden md:block mb-8 relative p-6 bg-white/5 border border-white/10 rounded-lg overflow-hidden">
               <div className="absolute top-0 right-0 p-2 opacity-20">
                 <Sparkles size={48} className="text-white" />
               </div>
