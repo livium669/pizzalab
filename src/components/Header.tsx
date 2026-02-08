@@ -2,14 +2,16 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { ShoppingCart, Menu } from "lucide-react";
+import { ShoppingCart, Menu, CalendarDays } from "lucide-react";
 import MobileMenu from "./MobileMenu";
 import CartSidebar from "./CartSidebar";
+import ReservationModal from "./ReservationModal";
 import { useCart } from "@/context/CartContext";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isReservationOpen, setIsReservationOpen] = useState(false);
   const { cartCount, toggleCart } = useCart();
 
   useEffect(() => {
@@ -77,13 +79,22 @@ export default function Header() {
       </nav>
       
       {/* Mobile Menu Icon */}
-      <button 
-        className="md:hidden text-white hover:text-neon-green transition-colors"
-        onClick={() => setIsMobileMenuOpen(true)}
-        aria-label="Open Menu"
-      >
-        <Menu size={32} />
-      </button>
+      <div className="flex items-center gap-4 md:hidden">
+        <button 
+          className="text-neon-green hover:text-white transition-colors animate-pulse"
+          onClick={() => setIsReservationOpen(true)}
+          aria-label="Book Table"
+        >
+          <CalendarDays size={28} />
+        </button>
+        <button 
+          className="text-white hover:text-neon-green transition-colors"
+          onClick={() => setIsMobileMenuOpen(true)}
+          aria-label="Open Menu"
+        >
+          <Menu size={32} />
+        </button>
+      </div>
 
       {/* Mobile Menu Overlay */}
       <MobileMenu 
@@ -91,6 +102,12 @@ export default function Header() {
         onClose={() => setIsMobileMenuOpen(false)} 
       />
       
+      {/* Reservation Modal (triggered from mobile icon) */}
+      <ReservationModal 
+        isOpen={isReservationOpen} 
+        onClose={() => setIsReservationOpen(false)} 
+      />
+
       {/* Cart Sidebar */}
       <CartSidebar />
     </header>
