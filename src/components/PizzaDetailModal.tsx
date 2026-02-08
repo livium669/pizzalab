@@ -58,7 +58,7 @@ export default function PizzaDetailModal({ pizza, onClose }: PizzaDetailModalPro
 
       {/* Modal Container */}
       <div 
-        className={`relative w-full max-w-4xl h-[85vh] md:h-auto bg-zinc-950 border border-white/20 shadow-2xl overflow-hidden flex flex-col md:flex-row transform transition-all duration-500 ${isVisible ? "scale-100 translate-y-0" : "scale-95 translate-y-8"}`}
+        className={`relative w-full max-w-4xl h-[100dvh] md:h-auto bg-zinc-950 border border-white/20 shadow-2xl overflow-hidden flex flex-col md:flex-row transform transition-all duration-500 ${isVisible ? "scale-100 translate-y-0" : "scale-95 translate-y-8"}`}
         style={{
           boxShadow: `0 0 50px -12px ${pizza.accentColor.includes("neon-green") ? "#39ff14" : pizza.accentColor.includes("neon-pink") ? "#ff00ff" : pizza.accentColor.includes("cyan") ? "#00ffff" : "#facc15"}40`
         }}
@@ -72,7 +72,7 @@ export default function PizzaDetailModal({ pizza, onClose }: PizzaDetailModalPro
         </button>
 
         {/* Left Side: Image */}
-        <div className="w-full md:w-1/2 h-1/3 md:h-[500px] relative group overflow-hidden">
+        <div className="w-full md:w-1/2 h-[200px] md:h-[500px] shrink-0 relative group overflow-hidden">
           <Image
             src={pizza.image}
             alt={pizza.name}
@@ -90,7 +90,7 @@ export default function PizzaDetailModal({ pizza, onClose }: PizzaDetailModalPro
         </div>
 
         {/* Right Side: Content */}
-        <div className="w-full md:w-1/2 p-6 md:p-4 flex flex-col h-2/3 md:h-auto overflow-y-auto custom-scrollbar">
+        <div className="w-full md:w-1/2 p-6 md:p-4 flex flex-col flex-1 md:flex-none md:h-auto overflow-y-auto custom-scrollbar min-h-0">
           
           {/* Header (Desktop) */}
           <div className="hidden md:block mb-6">
@@ -133,7 +133,7 @@ export default function PizzaDetailModal({ pizza, onClose }: PizzaDetailModalPro
                 <Sparkles size={48} className="text-white" />
               </div>
               <h3 className="text-sm font-mono text-neon-pink mb-3 uppercase tracking-wider flex items-center gap-2">
-                <Sparkles size={14} /> Origin Story (AI Log #882)
+                <Sparkles size={14} /> Origin Story 
               </h3>
               <p className="text-gray-300 font-sans leading-relaxed italic">
                 "{pizza.story}"
