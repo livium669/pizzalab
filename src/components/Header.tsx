@@ -12,11 +12,31 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isReservationOpen, setIsReservationOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("menu");
   const { cartCount, toggleCart } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+
+      // Active section detection
+      const sections = ["VisualMenu", "Location", "About"];
+      const current = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          // Check if section is roughly in the top third of viewport or fully visible
+          return rect.top >= 0 && rect.top <= 300 || (rect.top < 0 && rect.bottom > 100);
+        }
+        return false;
+      });
+
+      if (current) {
+        // Map section IDs to state keys
+        if (current === "VisualMenu") setActiveSection("menu");
+        if (current === "Location") setActiveSection("location");
+        if (current === "About") setActiveSection("about");
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -25,6 +45,10 @@ export default function Header() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const handleNavClick = (section: string) => {
+    setActiveSection(section);
+  };
 
   return (
     <header 
@@ -36,23 +60,43 @@ export default function Header() {
     >
       {/* Logo */}
       <div className="flex items-center">
-        <Link href="/" className="text-3xl font-oswald tracking-tighter uppercase text-white group cursor-pointer">
+        <Link 
+          href="/" 
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="text-3xl font-oswald tracking-tighter uppercase text-white group cursor-pointer"
+        >
           PIZZA <span className="text-neon-green group-hover:text-neon-pink transition-colors duration-300">LAB</span>
         </Link>
       </div>
 
       {/* Navigation */}
       <nav className="hidden md:flex items-center space-x-8 font-oswald text-sm tracking-wider">
-        <Link href="#VisualMenu" className="text-neon-green hover:text-white transition-colors">
+        <Link 
+          href="#VisualMenu" 
+          onClick={() => handleNavClick("menu")}
+          className={`transition-colors duration-300 ${activeSection === "menu" ? "text-neon-green" : "text-white hover:text-neon-green"}`}
+        >
           MENU 
         </Link>
-        <Link href="#Location" className="text-white hover:text-neon-green transition-colors">
+        <Link 
+          href="#Location" 
+          onClick={() => handleNavClick("location")}
+          className={`transition-colors duration-300 ${activeSection === "location" ? "text-neon-green" : "text-white hover:text-neon-green"}`}
+        >
           LOCATION 
         </Link>
-        <Link href="#About" className="text-white hover:text-neon-green transition-colors">
+        <Link 
+          href="#About" 
+          onClick={() => handleNavClick("about")}
+          className={`transition-colors duration-300 ${activeSection === "about" ? "text-neon-green" : "text-white hover:text-neon-green"}`}
+        >
           ABOUT 
         </Link>
-        <Link href="#VisualMenu" className="text-white hover:text-neon-green transition-colors">
+        <Link 
+          href="#VisualMenu" 
+          onClick={() => handleNavClick("menu")}
+          className="text-white hover:text-neon-green transition-colors"
+        >
           ORDER
         </Link>
         
