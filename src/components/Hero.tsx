@@ -25,6 +25,13 @@ export default function Hero() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleOrderClick = () => {
+    const visualMenuSection = document.getElementById("VisualMenu");
+    if (visualMenuSection) {
+      visualMenuSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="relative w-full h-[200vh] bg-[#1a1a1a]">
       <section className="sticky top-0 w-full h-screen flex items-center justify-center overflow-hidden bg-[#1a1a1a]">
@@ -37,7 +44,7 @@ export default function Hero() {
       {/* Main Text - Left */}
       <div className="absolute left-1/2 -translate-x-1/2 top-[15%] md:left-[5%] md:translate-x-0 md:top-[25%] z-10 max-w-[90vw] md:max-w-[400px] text-center md:text-left">
         <h2 
-          className="text-6xl md:text-8xl font-marker text-white leading-[0.85] glitch-text drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]" 
+          className="text-5xl md:text-8xl font-marker text-white leading-[0.85] glitch-text drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]" 
           data-text="FUEL YOUR CHAOS"
         >
           FUEL <br/>
@@ -100,8 +107,11 @@ export default function Hero() {
 
       {/* Neon Sign - Right */}
       <div className="absolute left-1/2 -translate-x-1/2 bottom-[15%] md:left-auto md:translate-x-0 md:right-[10%] md:top-[40%] md:bottom-auto z-30 transform rotate-[-5deg] mt-8 md:mt-0">
-        <button className="relative border-4 border-neon-pink p-3 md:p-4 rounded-lg shadow-[0_0_20px_#ff00ff,inset_0_0_10px_#ff00ff] hover:scale-110 hover:shadow-[0_0_40px_#ff00ff,inset_0_0_20px_#ff00ff] transition-all duration-300 cursor-pointer group bg-black/50 backdrop-blur-sm md:bg-transparent">
-          <h3 className="text-3xl md:text-4xl font-oswald italic text-white drop-shadow-[0_0_5px_#ff00ff] group-hover:text-white transition-colors whitespace-nowrap">
+        <button 
+          onClick={handleOrderClick}
+          className="relative border-4 border-neon-pink p-3 md:p-4 rounded-lg shadow-[0_0_20px_#ff00ff,inset_0_0_10px_#ff00ff] hover:scale-110 hover:shadow-[0_0_40px_#ff00ff,inset_0_0_20px_#ff00ff] transition-all duration-300 cursor-pointer group bg-black/50 backdrop-blur-sm md:bg-transparent"
+        >
+          <h3 className="text-2xl md:text-4xl font-oswald italic text-white drop-shadow-[0_0_5px_#ff00ff] group-hover:text-white transition-colors whitespace-nowrap">
             ORDER NOW!
           </h3>
           <Zap className="absolute -top-6 -right-6 text-neon-green w-8 h-8 md:w-10 md:h-10 drop-shadow-[0_0_10px_#ccff00] group-hover:rotate-12 transition-transform" />
