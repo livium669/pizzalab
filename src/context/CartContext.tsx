@@ -19,23 +19,33 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(false);
 
   // Load cart from localStorage on mount
   useEffect(() => {
-    const savedCart = localStorage.getItem("pizza-cart");
-    if (savedCart) {
-      try {
-        setItems(JSON.parse(savedCart));
-      } catch (e) {
-        console.error("Failed to parse cart", e);
+    if (typeof window !== "undefined") {
+      const savedCart = localStorage.getItem("pizza-cart");
+      if (savedCart) {
+        try {
+          const parsedItems = JSON.parse(savedCart);
+          if (Array.isArray(parsedItems)) {
+            setItems(parsedItems);
+          }
+        } catch (e) {
+          console.error("Failed to parse cart", e);
+          localStorage.removeItem("pizza-cart"); // Clear corrupted data
+        }
       }
+      setIsInitialized(true);
     }
   }, []);
 
-  // Save cart to localStorage whenever it changes
+  // Save cart to localStorage whenever it changes, but only after initialization
   useEffect(() => {
-    localStorage.setItem("pizza-cart", JSON.stringify(items));
-  }, [items]);
+    if (isInitialized) {
+      localStorage.setItem("pizza-cart", JSON.stringify(items));
+    }
+  }, [items, isInitialized]);
 
   const addToCart = (pizza: Pizza) => {
     setItems((prev) => {

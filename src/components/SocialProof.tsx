@@ -9,7 +9,7 @@ const socialPosts = [
     image: "https://images.unsplash.com/photo-1595295333158-4742f28fbd85?auto=format&fit=crop&w=600&q=80",
     likes: "2.4k",
     comments: "142",
-    caption: "Gravity is optional when the flavor is this heavy. #PizzaLab #AntiGravity",
+    caption: "Gravity is optional when the flavor is this heavy. #PizzaLab",
   },
   {
     id: 2,
